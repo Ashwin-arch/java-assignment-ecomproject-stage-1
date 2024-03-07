@@ -25,6 +25,7 @@ class SignIn {
     private static final String[] validPasswords = {"password1", "password2", "password3"};
 
     public static boolean signIn() {
+    	boolean status=true;
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter username: ");
@@ -33,19 +34,25 @@ class SignIn {
         String email = scanner.nextLine();
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
+        
 
-        for (int i = 0; i < validUsernames.length; i++) {
-            if (username.equals(validUsernames[i]) && email.equals(validEmails[i]) && password.equals(validPasswords[i])) {
+        
+        	
+        	if (password.equals("PWD")) {
                 System.out.println("Signed in successfully.");
-                scanner.close();
-                return true;
+                
+                status=true;
+            	}
+            else {
+            	  System.out.println("Sign in failed. Invalid username, email, or password.");
+                  System.out.println("Please try again.");
+                  
+                  status=false;
             }
-        }
+        
+        return status;
 
-        System.out.println("Sign in failed. Invalid username, email, or password.");
-        System.out.println("Please try again.");
-        scanner.close();
-        return false;
+      
     }
 }
 
@@ -74,52 +81,23 @@ class ShoppingCart {
 public class ECommerceApp {
     public static void main(String[] args) {
         boolean signedIn = false;
-
         while (!signedIn) {
             signedIn = SignIn.signIn();
         }
-
-        // User signed in successfully, proceed with shopping cart
         Product product1 = new Product("torch", 10.99);
         Product product2 = new Product("laptop", 8.99);
         Product product3 = new Product("perfume", 12.99);
-
         ShoppingCart cart = new ShoppingCart();
-
-        
-
-        while (true) {
-            System.out.println("1. Add Torch to Cart");
-            System.out.println("2. Add Laptop to Cart");
-            System.out.println("3. Add perfume to Cart");
-            System.out.println("4. View Cart");
-            System.out.println("5. Exit");
-
-            System.out.print("Enter your choice: ");
-            Scanner scanner = new Scanner(System.in);
-            int choice = scanner.nextInt();
+    	   System.out.println("1. Add Torch to Cart");
+           System.out.println("2. Add Laptop to Cart");
+           System.out.println("3. Add perfume to Cart");
+           System.out.println("4. View Cart");
+           System.out.println("5. Exit");
            
-
-            switch (choice) {
-                case 1:
-                    cart.addProduct(product1);
-                    break;
-                case 2:
-                    cart.addProduct(product2);
-                    break;
-                case 3:
-                    cart.addProduct(product3);
-                    break;
-                case 4:
-                    cart.displayCart();
-                    break;
-                case 5:
-                    System.out.println("Thank you for shopping with us!");
-                    scanner.close();
-                    System.exit(0);
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-            }
-        }
+       		System.out.println("Enter item name");
+       		Scanner sc1=new Scanner(System.in);
+       		String item1=sc1.nextLine();
+       				
+       		System.out.println(item1);      
     }
 }
