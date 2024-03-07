@@ -1,6 +1,7 @@
+package eapp;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 class Product {
     private String name;
     private double price;
@@ -34,21 +35,24 @@ class SignIn {
         String email = scanner.nextLine();
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
+
+        System.out.println("Signed in successfully.");
+        MD5 md=new MD5();
+   	    try {
+			String pass=md.hash(password);
+			System.out.println(pass);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
 
         
         	
-        	if (password.equals("PWD")) {
-                System.out.println("Signed in successfully.");
-                
-                status=true;
-            	}
-            else {
-            	  System.out.println("Sign in failed. Invalid username, email, or password.");
-                  System.out.println("Please try again.");
-                  
-                  status=false;
-            }
+        	
+               
+              
+            
         
         return status;
 
@@ -79,7 +83,7 @@ class ShoppingCart {
 }
 
 public class ECommerceApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
         boolean signedIn = false;
         while (!signedIn) {
             signedIn = SignIn.signIn();
@@ -98,6 +102,11 @@ public class ECommerceApp {
        		Scanner sc1=new Scanner(System.in);
        		String item1=sc1.nextLine();
        				
-       		System.out.println(item1);      
-    }
+       		System.out.println(item1);  
+       	
+       		
 }
+    
+
+}
+
